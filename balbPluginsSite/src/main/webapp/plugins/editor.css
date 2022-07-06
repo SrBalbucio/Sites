@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fascinate&family=Josefin+Sans:wght@400;700&family=Source+Sans+Pro:wght@200;300;400;700&display=swap');
+
+* {
+    font-family: Raleway;
+    margin: 0;
+}
+
+body {
+    background-color: #333333;
+}
+
+header {
+    text-align: center;
+    background-color: #020202;
+    color: #fff;
+    font-size: 24px;
+    padding: 30px;
+}
+
+.create {
+    width: 70%;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    color: #fff;
+    background-color: #020202;
+    padding: 30px;
+    font-size: 18px;
+}
+
+form {
+    align-items: center;
+}
+
+form input {
+    margin-top: 5px;
+}
+
+form input[type=text] {
+    padding: 10px;
+    border-radius: 15px;
+    min-width: 300px;
+}
+
+form input[type=number] {
+    padding: 10px;
+    border-radius: 15px;
+    min-width: 49%
+}
+
+form input[type=number] .pulo {
+    margin-right: 0.5%;
+}
+
+form fieldset {
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 15px;
+    min-width: 40%;
+    color: #fff;
+}
+
+form input[type=submit] {
+    align-self: center;
+    padding: 10px;
+    border-radius: 15px;
+    background: linear-gradient(45deg, #6969FF, #C669FF);
+    animation: hue-rotate 2s linear infinite alternate;
+}
+
+@keyframes hue-rotate {
+    to {
+        filter: hue-rotate(90deg);
+    }
+}
+
+.spp {
+    margin-bottom: 10px;
+}
