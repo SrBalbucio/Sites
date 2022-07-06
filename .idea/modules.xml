@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BalbProjects.iml" filepath="$PROJECT_DIR$/BalbProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BaldoquioBot/BaldoquioBot.iml" filepath="$PROJECT_DIR$/BaldoquioBot/BaldoquioBot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Utils/Utils.iml" filepath="$PROJECT_DIR$/Utils/Utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/balbAuthSite/balbAuthSite.iml" filepath="$PROJECT_DIR$/balbAuthSite/balbAuthSite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/balbPluginsSite/balbPluginsSite.iml" filepath="$PROJECT_DIR$/balbPluginsSite/balbPluginsSite.iml" />
+    </modules>
+  </component>
+</project>

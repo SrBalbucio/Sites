@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="balbPluginsSite" />
+        <module name="balbAuthSite" />
+        <module name="BaldoquioBot" />
+        <module name="Utils" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="balbAuthSite" target="1.8" />
+      <module name="balbPluginsSite" target="1.8" />
+      <module name="balbSiteUtils" target="11" />
+      <module name="balbUserSite" target="11" />
+      <module name="BaldoquioBot" target="11" />
+      <module name="Utils" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

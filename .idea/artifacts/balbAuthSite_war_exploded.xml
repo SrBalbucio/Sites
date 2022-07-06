@@ -1,0 +1,84 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="balbAuthSite:war exploded">
+    <output-path>$PROJECT_DIR$/balbAuthSite/target/balbAuthSite-1.0-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>balbAuthSite</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="balbAuthSite" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.github.Mokulu:discord-oauth2-api:1.0.2" />
+          <element id="library" level="project" name="Maven: org.json:json:20210307" />
+          <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.14.3" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.9" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.13" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.13" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.11" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.32" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.32" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="archive" name="balbPluginsSite-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="balbPluginsSite" />
+          </element>
+          <element id="library" level="project" name="Maven: com.github.SrBalbucio:AdfocusAPI:1.0" />
+          <element id="library" level="project" name="Maven: com.github.scribejava:scribejava-apis:8.3.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.12.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.12.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.12.3" />
+          <element id="library" level="project" name="Maven: com.github.scribejava:scribejava-core:8.3.1" />
+          <element id="library" level="project" name="Maven: com.github.scribejava:scribejava-java8:8.3.1" />
+          <element id="library" level="project" name="Maven: com.github.scribejava:scribejava-httpclient-okhttp:8.3.1" />
+          <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:4.9.1" />
+          <element id="library" level="project" name="Maven: com.squareup.okio:okio:2.8.0" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.0" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.10" />
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
+          <element id="library" level="project" name="Maven: com.github.scribejava:scribejava-httpclient-ahc:8.3.1" />
+          <element id="library" level="project" name="Maven: org.asynchttpclient:async-http-client:2.12.3" />
+          <element id="library" level="project" name="Maven: org.asynchttpclient:async-http-client-netty-utils:2.12.3" />
+          <element id="library" level="project" name="Maven: io.netty:netty-buffer:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec-http:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-common:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-transport:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-handler:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-resolver:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec-socks:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-handler-proxy:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-transport-native-unix-common:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-transport-native-kqueue:osx-x86_64:4.1.60.Final" />
+          <element id="library" level="project" name="Maven: org.reactivestreams:reactive-streams:1.0.3" />
+          <element id="library" level="project" name="Maven: com.typesafe.netty:netty-reactive-streams:2.0.4" />
+          <element id="library" level="project" name="Maven: com.sun.activation:jakarta.activation:1.2.2" />
+          <element id="archive" name="Utils-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="Utils" />
+          </element>
+          <element id="library" level="project" name="Maven: com.github.SrBalbucio:Datacrack:v1.0" />
+          <element id="library" level="project" name="Maven: com.github.SrBalbucio.Datacrack:Client:v1.0" />
+          <element id="library" level="project" name="Maven: co.gongzh.procbridge:procbridge:1.1" />
+          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.30" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:31.1-jre" />
+          <element id="library" level="project" name="Maven: com.google.guava:failureaccess:1.0.1" />
+          <element id="library" level="project" name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" />
+          <element id="library" level="project" name="Maven: com.google.code.findbugs:jsr305:3.0.2" />
+          <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.12.0" />
+          <element id="library" level="project" name="Maven: com.google.errorprone:error_prone_annotations:2.11.0" />
+          <element id="library" level="project" name="Maven: com.google.j2objc:j2objc-annotations:1.3" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/balbAuthSite/target/balbAuthSite-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="balbAuthSite/web/Web" />
+    </root>
+  </artifact>
+</component>
