@@ -10,10 +10,12 @@
         <module name="balbAuthSite" />
         <module name="BaldoquioBot" />
         <module name="Utils" />
+        <module name="balbDefaultSite" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="balbAuthSite" target="1.8" />
+      <module name="balbDefaultSite" target="1.8" />
       <module name="balbPluginsSite" target="1.8" />
       <module name="balbSiteUtils" target="11" />
       <module name="balbUserSite" target="11" />

@@ -24,9 +24,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>balbPlugins - Início</title>
     <meta name="description" content="Qualidade, segurança e facilidade em primeiro lugar.">
     <meta name="keywords" content="balbplugins, minecraft, plugins, plugin grátis">
+    <title>balbPlugins - Início</title>
 
     <link rel="icon" href="images/balbplugin3.png">
 

@@ -20,6 +20,9 @@ public class DiscordAuth {
         TokensResponse tokens = oauthHandler.getTokens(code);
         DiscordAPI api = new DiscordAPI(tokens.getAccessToken());
         User user = api.fetchUser();
-        return new Account(user);
+        boolean isnew = Account.contains(user.getEmail());
+        Account account = new Account(user);
+        account.setNewAccount(isnew);
+        return account;
     }
 }

@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="balbAuthSite:war">
-    <output-path>$PROJECT_DIR$/balbAuthSite/target</output-path>
+    <output-path>$USER_HOME$/Desktop</output-path>
     <properties id="maven-jee-properties">
       <options>
         <module>balbAuthSite</module>

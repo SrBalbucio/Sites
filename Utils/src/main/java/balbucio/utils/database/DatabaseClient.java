@@ -17,12 +17,16 @@ public class DatabaseClient {
     private Datacrack datacrack;
 
     public DatabaseClient(){
-        this.datacrack = new Datacrack(new User("Admin", "Ademiro"));
-        datacrack.getManager().addSocket("painel.ec2.balbucio.xyz", 25565);
+        this.datacrack = new Datacrack(new User("Admin", "Adermirson"));
+        datacrack.getManager().addSocket("localhost", 25565);
     }
 
     public static DatabaseClient getInstance() {
         return instance;
+    }
+
+    public Datacrack getDatacrack() {
+        return datacrack;
     }
 
     public RootDataPack getUser(String user) throws Exception {

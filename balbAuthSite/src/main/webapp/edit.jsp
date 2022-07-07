@@ -23,8 +23,24 @@
     }
 %>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta property="og:site_name" content="Balbucio Projects" />
+    <meta property="og:site" content="https://user.balbucio.xyz" />
+    <meta property="og:title" content="Balbucio Projects - Área para Usuários"/>
+    <meta property="og:description" content="Gerencie tudo sobre sua conta em um lugar só!" />
+    <meta property="og:image" content="http://user.balbucio.xyz/images/balbplugins.png" />
+    <meta property="og:url" content="https://user.balbucio.xyz" />
+    <meta name="author" content="Balbucio">
+    <meta name="google" value="notranslate">
+    <meta name="revisit-after" content="1 week">
+    <meta name="robots" content="index,follow,noodp,noydir">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Tudo sobre sua conta em um lugar só!">
+    <meta name="keywords" content="balbplugins, balbprojects, balbucio, datacrack">
     <title>Editar seu Perfil - Balbucio Projects</title>
     <link rel="stylesheet" href="css/profile.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="images/balbplugin3.png">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +72,7 @@
                                 </h4>
                                 <p class="text-muted font-size-sm">#<%=account.getDiscriminator()%>
                                 </p>
-                                <button class="btn btn-primary">Logout</button>
+                                <button class="btn btn-primary" onclick="openURL('logoff')">Logout</button>
                                 <button class="btn btn-outline-primary">Configurações</button>
                             </div>
                         </div>
@@ -140,5 +156,6 @@
     </div>
 </div>
 </div>
+<script src="js/geral.js"></script>
 </body>
 </html>

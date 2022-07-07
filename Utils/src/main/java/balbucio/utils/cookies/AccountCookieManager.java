@@ -32,6 +32,33 @@ public class AccountCookieManager {
         }
     }
 
+    public static void remove(AccountTempID id){
+        try {
+            if (tempIDS.contains(id)) {
+                RootDataPack tempID = DatabaseClient.getInstance().getTempIds();
+                tempID.set(id.getUniqueID() + "_datapack", null);
+                id.destroy();
+                tempIDS.remove(id);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static AccountTempID getTempID(Cookie[] cookies){
+        if(cookies != null) {
+            Cookie cok = CookieUtils.getCookie("balbUniqueID", cookies);
+            if (cok != null) {
+                if (checkIfExists(cok.getValue())) {
+                    return getTempID(cok.getValue());
+                } else {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
     public static Cookie createTempID(Account acc) {
         String uniqueID = UUID.randomUUID().toString()+"-"+acc.getDiscordID()+"-"+new Random().nextInt(999_999);
         Cookie cookie = null;
@@ -39,6 +66,7 @@ public class AccountCookieManager {
         tempIDS.add(tid);
         cookie = new Cookie("balbUniqueID", uniqueID.toString());
         cookie.setMaxAge(60 * 60 * 24 * 5);
+        cookie.setDomain("balbucio.xyz");
         cookie.setPath("/");
         cookie.setComment("Este cookie registra sua conta, não compartilhe com ninguém! Esse ID durará por 5 dias.");
         try {
@@ -101,7 +129,12 @@ public class AccountCookieManager {
             if (!started) {
                 RootDataPack tempID = DatabaseClient.getInstance().getTempIds();
                 for (DataPack d : tempID.getAllDataPacks()) {
-                    tempIDS.add(new AccountTempID(d.getName(), d.getString("account"), d.getLong("time")));
+                    try {
+                        tempIDS.add(new AccountTempID(d.getName(), d.getString("account"), d.getLong("time")));
+                    } catch(Exception e){
+                        e.printStackTrace();
+                        tempID.remove(d.getName()+"_datapack");
+                    }
                 }
             }
         } catch (Exception e){

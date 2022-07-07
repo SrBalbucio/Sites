@@ -20,7 +20,23 @@
     Account account = isLogged ? AccountCookieManager.getAccount(request.getCookies()) : new Account();
 %>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta property="og:site_name" content="Balbucio Projects" />
+    <meta property="og:site" content="https://user.balbucio.xyz" />
+    <meta property="og:title" content="Balbucio Projects - Área para Usuários"/>
+    <meta property="og:description" content="Gerencie tudo sobre sua conta em um lugar só!" />
+    <meta property="og:image" content="http://user.balbucio.xyz/images/balbplugins.png" />
+    <meta property="og:url" content="https://user.balbucio.xyz" />
+    <meta name="author" content="Balbucio">
+    <meta name="google" value="notranslate">
+    <meta name="revisit-after" content="1 week">
+    <meta name="robots" content="index,follow,noodp,noydir">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Tudo sobre sua conta em um lugar só!">
+    <meta name="keywords" content="balbplugins, balbprojects, balbucio, datacrack">
     <title>Configurações do seu Perfil - Balbucio Projects</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/profile.css">
     <link rel="icon" href="images/balbplugin3.png">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -59,7 +75,7 @@
                             </h4>
                             <p class="text-muted font-size-sm">#<%=account.getDiscriminator()%>
                             </p>
-                            <button class="btn btn-primary">Logout</button>
+                            <button class="btn btn-primary" onclick="openURL('logoff')">Logout</button>
                         </div>
                     </div>
                 </div>
@@ -92,15 +108,6 @@
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
                             Segurança
-                        </a>
-                        <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-bell mr-2">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                            </svg>
-                            Notificações
                         </a>
                     </nav>
                 </div>
@@ -139,26 +146,6 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#notification" data-toggle="tab" class="nav-link has-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-bell">
-                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#billing" data-toggle="tab" class="nav-link has-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-credit-card">
-                                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                                    <line x1="1" y1="10" x2="23" y2="10"></line>
-                                </svg>
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 <div class="card-body tab-content">
@@ -171,8 +158,8 @@
                                 <input name="name" type="text" class="form-control" id="fullName"
                                        aria-describedby="fullNameHelp"
                                        placeholder="Coloque seu Nome Completo" value="<%=account.getName()%>">
-                                <small id="fullNameHelp" class="form-text text-muted">Este é nome será usado para
-                                    processar pagamentos e informações legais. Não será compartilhado!</small>
+                                <small id="fullNameHelp" class="form-text text-muted">Este nome será usado para
+                                    processar pagamentos e informações legais. Não será compartilhado! Não use Acentos!</small>
                             </div>
                             <div class="form-group">
                                 <label for="bio">Sua Bio</label>
@@ -204,23 +191,26 @@
                     <div class="tab-pane" id="account">
                         <h6>Configurações da sua Conta</h6>
                         <hr>
-                        <form>
+                        <form action="edit" method="post">
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input name="username" type="text" class="form-control" id="username"
                                        aria-describedby="usernameHelp"
-                                       placeholder="Enter your username" value="<%=account.getUsername()%>">
+                                       placeholder="Insira seu username" value="<%=account.getUsername()%>">
                                 <small id="usernameHelp" class="form-text text-muted">Geralmente usamos o seu Nick do
                                     Discord para usar como Username aqui no site, mas você tem a opção de trocar isso
                                     por aqui.</small>
+                                <button type="submit" class="btn btn-primary">Atualizar</button>
                             </div>
-                            <hr>
+                        </form>
+                        <hr>
+                        <form method="get" action="deleteaccount">
                             <div class="form-group">
-                                <label class="d-block text-danger">Delete Account</label>
-                                <p class="text-muted font-size-sm">Once you delete your account, there is no going back.
-                                    Please be certain.</p>
+                                <label class="d-block text-danger">Deletar conta</label>
+                                <p class="text-muted font-size-sm">Depois de excluir sua conta, não há como voltar
+                                    atrás. Por favor, tenha certeza.</p>
                             </div>
-                            <button class="btn btn-danger" type="button">Delete Account</button>
+                            <button class="btn btn-danger" type="submit">Deletar conta</button>
                         </form>
                     </div>
                     <div class="tab-pane" id="security">
@@ -236,115 +226,9 @@
                                         out.println("<input name=old type=\"text\" class=\"form-control\" placeholder=\"Insira sua senha antiga\">");
                                     }
                                 %>
-                                <input name="senha"type="text" class="form-control mt-1" placeholder="Nova senha">
+                                <input name="senha" type="text" class="form-control mt-1" placeholder="Nova senha">
                                 <hr>
                                 <button class="btn btn-info" type="submit">Trocar senha</button>
-                            </div>
-                        </form>
-                        <hr>
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block">Two Factor Authentication</label>
-                                <button class="btn btn-info" type="button">Enable two-factor authentication</button>
-                                <p class="small text-muted mt-2">Two-factor authentication adds an additional layer of
-                                    security to your account by requiring more than just a password to log in.</p>
-                            </div>
-                        </form>
-                        <hr>
-                        <form>
-                            <div class="form-group mb-0">
-                                <label class="d-block">Sessions</label>
-                                <p class="font-size-sm text-secondary">This is a list of devices that have logged into
-                                    your account. Revoke any sessions that you do not recognize.</p>
-                                <ul class="list-group list-group-sm">
-                                    <li class="list-group-item has-icon">
-                                        <div>
-                                            <h6 class="mb-0">San Francisco City 190.24.335.55</h6>
-                                            <small class="text-muted">Your current session seen in United States</small>
-                                        </div>
-                                        <button class="btn btn-light btn-sm ml-auto" type="button">More info</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane" id="notification">
-                        <h6>NOTIFICATION SETTINGS</h6>
-                        <hr>
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block mb-0">Security Alerts</label>
-                                <div class="small text-muted mb-3">Receive security alert notifications via email</div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
-                                    <label class="custom-control-label" for="customCheck1">Email each time a
-                                        vulnerability is found</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck2" checked="">
-                                    <label class="custom-control-label" for="customCheck2">Email a digest summary of
-                                        vulnerability</label>
-                                </div>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label class="d-block">SMS Notifications</label>
-                                <ul class="list-group list-group-sm">
-                                    <li class="list-group-item has-icon">
-                                        Comments
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch1"
-                                                   checked="">
-                                            <label class="custom-control-label" for="customSwitch1"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item has-icon">
-                                        Updates From People
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                                            <label class="custom-control-label" for="customSwitch2"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item has-icon">
-                                        Reminders
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch3"
-                                                   checked="">
-                                            <label class="custom-control-label" for="customSwitch3"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item has-icon">
-                                        Events
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch4"
-                                                   checked="">
-                                            <label class="custom-control-label" for="customSwitch4"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item has-icon">
-                                        Pages You Follow
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch5">
-                                            <label class="custom-control-label" for="customSwitch5"></label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane" id="billing">
-                        <h6>BILLING SETTINGS</h6>
-                        <hr>
-                        <form>
-                            <div class="form-group">
-                                <label class="d-block mb-0">Payment Method</label>
-                                <div class="small text-muted mb-3">You have not added a payment method</div>
-                                <button class="btn btn-info" type="button">Add Payment Method</button>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label class="d-block">Payment History</label>
-                                <div class="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">You have
-                                    not made any payment.
-                                </div>
                             </div>
                         </form>
                     </div>
@@ -354,5 +238,6 @@
     </div>
 
 </div>
+<script src="js/geral.js"></script>
 </body>
 </html>

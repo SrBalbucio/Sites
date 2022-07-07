@@ -1,4 +1,6 @@
-
+html{
+    width: 100%;
+}
 body{
     margin-top:20px;
     color: #1a202c;
@@ -61,5 +63,8 @@ header{
     box-shadow: none!important;
 }
 form{
-    width: 600px;
+    max-width: 100%;
+}
+form input{
+    width: auto;
 }

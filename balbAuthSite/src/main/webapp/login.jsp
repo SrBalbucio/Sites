@@ -1,5 +1,6 @@
 <%@ page import="balbucio.utils.database.DatabaseClient" %>
-<%@ page import="balbucio.utils.cookies.AccountCookieManager" %><%--
+<%@ page import="balbucio.utils.cookies.AccountCookieManager" %>
+<%@ page import="balbucio.utils.Start" %><%--
   Created by IntelliJ IDEA.
   User: balbucio
   Date: 7/3/2022
@@ -9,13 +10,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <%
-    DatabaseClient.createIfNotExists();
+    Start.i();
     if(AccountCookieManager.checkTempID(request.getCookies())){
-        response.sendRedirect("/");
+        response.sendRedirect("index.jsp");
     }
 %>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta property="og:site_name" content="Balbucio Projects" />
+    <meta property="og:site" content="https://user.balbucio.xyz" />
+    <meta property="og:title" content="Balbucio Projects - Área para Usuários"/>
+    <meta property="og:description" content="Gerencie tudo sobre sua conta em um lugar só!" />
+    <meta property="og:image" content="http://user.balbucio.xyz/images/balbplugins.png" />
+    <meta property="og:url" content="https://user.balbucio.xyz" />
+    <meta name="author" content="Balbucio">
+    <meta name="google" value="notranslate">
+    <meta name="revisit-after" content="1 week">
+    <meta name="robots" content="index,follow,noodp,noydir">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Tudo sobre sua conta em um lugar só!">
+    <meta name="keywords" content="balbplugins, balbprojects, balbucio, datacrack">
+
     <title>Login - Balbucio Projects</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,19 +53,14 @@
                     <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/balbplugins.png);"></div>
                     <h3 class="text-center mb-0">Seja bem-vindo!</h3>
                     <p class="text-center">Logue e aproveite ao máximo nosso conteúdo</p>
-                    <form action="#" class="login-form" method="post">
+                    <form action="login" class="login-form" method="post">
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
                             <input type="text" class="form-control" placeholder="Email" name="email"required>
                         </div>
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                            <input type="password" class="form-control" name="senha" placeholder="Senha" required>
-                        </div>
-                        <div class="form-group d-md-flex">
-                            <div class="w-100 text-md-right">
-                                <a href="#">Esqueceu a senha?</a>
-                            </div>
+                            <input type="password" class="form-control" name="password" placeholder="Senha" required>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn form-control btn-primary rounded submit px-3">Logar</button>
@@ -69,7 +80,8 @@
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
-
+<script src="js/error.js"></script>
+<script src="js/geral.js"></script>
 </body>
 </html>
 

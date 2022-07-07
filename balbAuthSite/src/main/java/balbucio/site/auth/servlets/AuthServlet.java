@@ -29,8 +29,13 @@ public class AuthServlet extends HttpServlet {
                 return;
             }
             try {
-                response.addCookie(AccountCookieManager.createTempID(DiscordAuth.getAccount(request.getParameter("code"))));
-                response.sendRedirect("https://user.balbucio.xyz/");
+                Account acc = DiscordAuth.getAccount(request.getParameter("code"));
+                response.addCookie(AccountCookieManager.createTempID(acc));
+                if(!acc.isNewAccount()) {
+                    response.sendRedirect("/index.jsp?new=true");
+                } else{
+                    response.sendRedirect("/index.jsp");
+                }
             } catch (Exception e){
                 response.sendRedirect("https://user.balbucio.xyz/login.jsp");
             }

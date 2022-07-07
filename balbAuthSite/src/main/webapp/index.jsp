@@ -16,7 +16,23 @@
 %>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta property="og:site_name" content="Balbucio Projects" />
+    <meta property="og:site" content="https://user.balbucio.xyz" />
+    <meta property="og:title" content="Balbucio Projects - Área para Usuários"/>
+    <meta property="og:description" content="Gerencie tudo sobre sua conta em um lugar só!" />
+    <meta property="og:image" content="http://user.balbucio.xyz/images/balbplugins.png" />
+    <meta property="og:url" content="https://user.balbucio.xyz" />
+    <meta name="author" content="Balbucio">
+    <meta name="google" value="notranslate">
+    <meta name="revisit-after" content="1 week">
+    <meta name="robots" content="index,follow,noodp,noydir">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Tudo sobre sua conta em um lugar só!">
+    <meta name="keywords" content="balbplugins, balbprojects, balbucio, datacrack">
     <title>Seu Perfil - Balbucio Projects</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/profile.css">
     <link rel="icon" href="images/balbplugin3.png">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -27,7 +43,7 @@
 <header class="d-flex flex-column align-items-center text-center">
     <img src="images/balbplugin3.png" width="48">
 </header>
-<section>
+<section id="allpackage">
     <div class="container">
         <div class="main-body">
             <nav aria-label="breadcrumb" class="main-breadcrumb">
@@ -50,7 +66,7 @@
                                 <div class="mt-3">
                                     <h4><%=account.getUsername()%></h4>
                                     <p class="text-muted font-size-sm">#<%=account.getDiscriminator()%></p>
-                                    <button class="btn btn-primary">Logout</button>
+                                    <button class="btn btn-primary" onclick="openURL('logoff')">Logout</button>
                                     <button class="btn btn-outline-primary" onclick="openURL('settings.jsp')">Configurações</button>
                                 </div>
                             </div>
@@ -134,5 +150,6 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/geral.js"></script>
+<script src="js/createdelay.js"></script>
 </body>
 </html>

@@ -32,10 +32,5 @@
             <artifactId>discord-oauth2-api</artifactId>
             <version>1.0.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.SrBalbucio</groupId>
-            <artifactId>Datacrack</artifactId>
-            <version>v1.0</version>
-        </dependency>
     </dependencies>
 </project>

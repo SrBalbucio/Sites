@@ -80,11 +80,6 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.SrBalbucio</groupId>
-            <artifactId>Datacrack</artifactId>
-            <version>v1.0</version>
-        </dependency>
     </dependencies>
 
     <build>

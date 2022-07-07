@@ -16,7 +16,7 @@ public class Account {
     private boolean usernameChanged = false;
     private String discriminator = "0000";
     private String email = "<null-not>";
-    private String avatar = "<null-not>";
+    private String avatar = "null-not";
     private String discordID = "<null-not>";
     private UUID uniqueID = UUID.randomUUID();
     private String password = "<null-not>";
@@ -29,13 +29,11 @@ public class Account {
     private String site = "Não informado";
     private String bio = "Sou uma pessoa incrível e gosto dos projetos do balb :)";
     private List<AccountModule> modules = new ArrayList<>();
-
+    private boolean isNewAccount = false;
     public Account(User user){
         try {
             RootDataPack pack = DatabaseClient.getInstance().getUser(user.getEmail());
-            if(!pack.contains("usernameChanged")) {
-                this.username = user.getUsername();
-            } else if(pack.getBoolean("usernameChanged")){
+            if(pack.contains("usernameChanged") && pack.getBoolean("usernameChanged")){
                 this.username = pack.getString("username");
             } else{
                 this.username = user.getUsername();
@@ -76,16 +74,26 @@ public class Account {
         } catch (Exception e){
             e.printStackTrace();
         }
+        save();
     }
 
     public Account(String email){
+        if(email.equalsIgnoreCase("<null-not>")){ return; }
         try {
             RootDataPack pack = DatabaseClient.getInstance().getUser(email);
-            this.username = pack.getString("username");
-            this.email = pack.getString("email");
-            this.avatar = pack.getString("avatar");
-            this.discriminator = pack.getString("discriminator");
-            this.discordID = pack.getString("discordID");
+            if(pack.contains("username")) {
+                this.username = pack.getString("username");
+            }
+            this.email = email;
+            if(pack.contains("avatar")) {
+                this.avatar = pack.getString("avatar");
+            }
+            if(pack.contains("discriminator")) {
+                this.discriminator = pack.getString("discriminator");
+            }
+            if(pack.contains("discordID")) {
+                this.discordID = pack.getString("discordID");
+            }
             if(pack.contains("password")){
                 this.password = pack.getString("password");
             }
@@ -175,6 +183,7 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+        save();
     }
 
     public String getGitUsername() {
@@ -210,6 +219,7 @@ public class Account {
 
     public void setName(String name) {
         this.name = name;
+        save();
     }
 
     public String getEndereco() {
@@ -218,6 +228,7 @@ public class Account {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+        save();
     }
 
     public String getTelefone() {
@@ -226,6 +237,7 @@ public class Account {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+        save();
     }
 
     public boolean isUsernameChanged() {
@@ -242,6 +254,7 @@ public class Account {
 
     public void setSite(String site) {
         this.site = site;
+        save();
     }
 
     public String getBio() {
@@ -250,6 +263,7 @@ public class Account {
 
     public void setBio(String bio) {
         this.bio = bio;
+        save();
     }
 
     public void createModule(AccountModule module){
@@ -283,5 +297,24 @@ public class Account {
 
     public static Account getAccountByEmail(String email){
         return new Account(email);
+    }
+
+    public static boolean contains(String email)  {
+        RootDataPack pack = null;
+        try {
+            pack = DatabaseClient.getInstance().getUser(email);
+            return pack.contains("email");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean isNewAccount() {
+        return isNewAccount;
+    }
+
+    public void setNewAccount(boolean newAccount) {
+        isNewAccount = newAccount;
     }
 }
