@@ -51,8 +51,8 @@
                 <label for="gratis">É gratuito?</label>
             </div>
             <div>
-                <input id="insp"type="checkbox" placeholder="Tem versão grátis na Spigot?" name=inspigot">
-                <label for="insp">Tem versão gratuita na Spigot?</label>
+                <input id="inspigot" type="checkbox" placeholder="Tem versão grátis na Spigot?" name=inspigot">
+                <label for="inspigot">Tem versão gratuita na Spigot?</label>
             </div>
         </fieldset>
         <input class="w-full spp" type="text" placeholder="Spigot URL" name="spigot">

@@ -6,6 +6,7 @@ import balbucio.utils.database.DatabaseClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class License {
@@ -14,21 +15,22 @@ public class License {
 
     private String owner;
     private Plugin plugin;
-    private UUID key;
-    private boolean activate;
+    private String key = "<null-not>";
+    private boolean activate = false;
 
-    public License(String owner, Plugin plugin, UUID key, boolean activate){
+    public License(String owner, Plugin plugin, String key, boolean activate){
         this.owner = owner;
         this.plugin = plugin;
         this.key = key;
         this.activate = activate;
+        allLicenses.add(this);
     }
 
     public License(String owner, Plugin plugin){
         this.owner = owner;
         this.plugin = plugin;
-        this.key = UUID.randomUUID();
-        this.activate = true;
+        this.key = UUID.randomUUID().toString()+new Random().nextInt(999_999);
+        allLicenses.add(this);
     }
 
     public String getOwner() {
@@ -39,11 +41,11 @@ public class License {
         return plugin;
     }
 
-    public UUID getKey() {
+    public String getKey() {
         return key;
     }
 
-    public void setKey(UUID key) {
+    public void setKey(String key) {
         this.key = key;
     }
 
@@ -61,18 +63,51 @@ public class License {
         return ls;
     }
 
+    public static boolean hasLicense(String owner, Plugin plugin){
+        List<License> ls = getLicensesFromAccount(owner);
+        for(License l : ls){
+            if(l.getPlugin() == plugin){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static License getLicense(String owner, Plugin plugin){
+        List<License> ls = getLicensesFromAccount(owner);
+        for(License l : ls){
+            if(l.getPlugin() == plugin){
+                return l;
+            }
+        }
+        return null;
+    }
+
+    public static void removeLicense(String owner, Plugin plugin){
+        try {
+            RootDataPack licenses = DatabaseClient.getInstance().getLicenses();
+            if (hasLicense(owner, plugin)) {
+                License l = getLicense(owner, plugin);
+                allLicenses.remove(l);
+                licenses.remove(l.owner + "*" + l.getKey().toString()+"_datapack");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void reload(){
         try{
             RootDataPack licenses = DatabaseClient.getInstance().getLicenses();
             for(DataPack data : licenses.getAllDataPacks()){
                 if(data.contains("key")) {
-                    new License(data.getString("owner"), Plugin.getPluginByName().get(data.getString("plugin")), UUID.fromString(data.getString("key")), data.getBoolean("activate"));
+                    new License(data.getString("owner"), Plugin.getPluginByName().get(data.getString("plugin")), data.getString("key"), data.getBoolean("activate"));
                 } else{
                     new License(data.getString("owner"), Plugin.getPluginByName().get(data.getString("plugin")));
                 }
             }
             for(License license : allLicenses){
-                DataPack data = licenses.createDataPack(license.owner+"*"+license.getKey().toString());
+                DataPack data = licenses.createDataPack(license.getKey().toString());
                 data.setString("owner", license.getOwner());
                 data.setString("plugin", license.getPlugin().getName());
                 data.setString("key", license.getKey().toString());

@@ -735,8 +735,8 @@ summary {
 .summarycontent p{
     color: #fff !important;
 }
-summary:before {
-    content: '';
+.pluginversions summary:before {
+    content: '-';
     border-width: .4rem;
     border-style: solid;
     border-color: transparent transparent transparent #fff;
@@ -830,6 +830,10 @@ details > ul {
 
 .details .options a:hover {
     transform: scale(1.1);
+}
+
+.details .options .semmargin{
+    margin-top: 3px !important;
 }
 
 .details .options h4 {

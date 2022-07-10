@@ -8,7 +8,9 @@ import java.io.IOException;
 import balbucio.site.auth.servlets.auths.*;
 import balbucio.utils.Account;
 import balbucio.utils.cookies.AccountCookieManager;
+import balbucio.utils.cookies.CookieUtils;
 import balbucio.utils.database.DatabaseClient;
+import org.json.JSONObject;
 
 
 @WebServlet(name = "Auth Servlet", urlPatterns = {"/oauth/dc", "/oauth/git", "/oauth/google", "/oauth/face","/oauth/imgur", "/oauth/send"})
@@ -22,6 +24,8 @@ public class AuthServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean isRedirect = CookieUtils.hasCookie("bRedirect", request.getCookies());
+        Cookie redirectCookie = isRedirect ? CookieUtils.getCookie("bRedirect", request.getCookies()) : new Cookie("", "");
         String action = request.getServletPath();
         if(action.equalsIgnoreCase("/oauth/dc")){
             if(!request.getParameterMap().containsKey("code")){
@@ -31,10 +35,14 @@ public class AuthServlet extends HttpServlet {
             try {
                 Account acc = DiscordAuth.getAccount(request.getParameter("code"));
                 response.addCookie(AccountCookieManager.createTempID(acc));
-                if(!acc.isNewAccount()) {
+                if (!acc.isNewAccount()) {
                     response.sendRedirect("/index.jsp?new=true");
-                } else{
-                    response.sendRedirect("/index.jsp");
+                } else {
+                    if (isRedirect) {
+                        response.sendRedirect(redirectCookie.getValue());
+                    } else {
+                        response.sendRedirect("/index.jsp");
+                    }
                 }
             } catch (Exception e){
                 response.sendRedirect("https://user.balbucio.xyz/login.jsp");
@@ -50,11 +58,12 @@ public class AuthServlet extends HttpServlet {
             }
             try {
                 Account acc = AccountCookieManager.getAccount(request.getCookies());
-                acc.setGitHub(GitAuth.getJSON(request.getParameter("code")));
-                response.sendRedirect("https://user.balbucio.xyz/");
+                JSONObject json = GitAuth.getJSON(request.getParameter("code"));
+                acc.setGitHub(json);
+                response.sendRedirect("/index.jsp");
             } catch (Exception e){
                 e.printStackTrace();
-                response.sendRedirect("https://user.balbucio.xyz/login.jsp");
+                response.sendRedirect("https://user.balbucio.xyz/login.jsp?error=Ocorreu um erro ao sincronizar a conta!");
             }
         } else if(action.equalsIgnoreCase("/oauth/send")){
             if(!request.getParameterMap().containsKey("type")){

@@ -14,6 +14,11 @@
     if(AccountCookieManager.checkTempID(request.getCookies())){
         response.sendRedirect("index.jsp");
     }
+    if(request.getParameterMap().containsKey("redirect")){
+        Cookie cok = new Cookie("bRedirect", request.getParameter("redirect"));
+        cok.setMaxAge(120);
+        response.addCookie(cok);
+    }
 %>
 <html lang="en">
 <head>

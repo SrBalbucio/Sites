@@ -1,6 +1,9 @@
 package balbucio.plugins.servlets;
 
+import balbucio.plugins.site.License;
 import balbucio.plugins.site.Plugin;
+import balbucio.utils.Account;
+import balbucio.utils.cookies.AccountCookieManager;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -14,7 +17,16 @@ import java.io.OutputStream;
 public class DownloadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        License.reload();
+        boolean isLogged = AccountCookieManager.checkTempID(request.getCookies());
+        Account acc = isLogged ? AccountCookieManager.getAccount(request.getCookies()) : new Account();
+
         if (!request.getParameterMap().containsKey("plugin")) {
+            response.sendRedirect("https://plugins.balbucio.xyz");
+            return;
+        }
+        if(Plugin.getPluginByName().containsKey(request.getParameter("plugin"))){
             response.sendRedirect("https://plugins.balbucio.xyz");
             return;
         }
@@ -30,6 +42,10 @@ public class DownloadServlet extends HttpServlet {
         }
         if (file == null) {
             response.getWriter().println("Ops... Aparentemente essa versão do Plugin não pode ser baixada. Contate um administrador se você acha que isso é um erro!");
+            return;
+        }
+        if(!plugin.isFree() && !License.hasLicense(acc.getEmail(), plugin)){
+            response.sendRedirect("https://plugins.balbucio.xyz/details.jsp?plugin="+plugin.getName()+"&error=Você deve ter o plugin comprado antes baixar!");
             return;
         }
         response.setContentType("text/plain");

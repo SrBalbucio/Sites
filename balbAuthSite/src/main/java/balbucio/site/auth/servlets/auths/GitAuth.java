@@ -22,6 +22,7 @@ public class GitAuth {
     static OAuth20Service service = new ServiceBuilder("66d5527ac086e97e7484")
             .apiSecret("b5c0e144697c1cb24445099c219c5af779f8279e")
             .callback("https://user.balbucio.xyz/oauth/git")
+            .defaultScope("user")
             .httpClientConfig(OkHttpHttpClientConfig.defaultConfig())
             .build(GitHubApi.instance());
 

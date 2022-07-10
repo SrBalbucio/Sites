@@ -2,6 +2,7 @@ package balbucio.plugins.site;
 
 import balbucio.datacrack.client.data.DataPack;
 import balbucio.datacrack.client.data.RootDataPack;
+import balbucio.utils.Start;
 import balbucio.utils.database.DatabaseClient;
 import org.json.JSONObject;
 
@@ -40,6 +41,7 @@ public class Plugin {
         this.content = content;
         plugins.add(this);
         pluginByName.put(name, this);
+        update();
     }
 
     public String getName() {
@@ -143,6 +145,7 @@ public class Plugin {
             }
         }
         this.version = defversion;
+        update();
     }
 
     public File getDownloadFile(String context) {
@@ -164,6 +167,7 @@ public class Plugin {
     }
 
     public static void update(){
+        Start.i();
         try{
             RootDataPack content = DatabaseClient.getInstance().getContent();
             for (Plugin plugin : plugins) {

@@ -1,14 +1,16 @@
-<%@ page import="balbucio.plugins.accounts.Account" %>
+
 <%@ page import="balbucio.plugins.cookies.CookieManager" %>
 <%@ page import="java.util.UUID" %>
-<%@ page import="balbucio.plugins.DatabaseClient" %>
 <%@ page import="balbucio.plugins.site.Plugin" %>
 <%@ page import="balbucio.plugins.site.License" %>
+<%@ page import="balbucio.utils.Start" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt">
 <%
+    Start.i();
     Plugin.update();
+    License.reload();
     if(!CookieManager.isAdmin(request.getCookies())) {
         if (!request.getParameterMap().containsKey("senha") || !request.getParameter("senha").equalsIgnoreCase("oBomEVelhoSexo1902932438949243"))
         {
@@ -42,7 +44,7 @@
     <meta name="description" content="Qualidade, segurança e facilidade em primeiro lugar.">
     <meta name="keywords" content="balbplugins, minecraft, plugins, plugin grátis">
 
-    <link rel="icon" href="../images/balbplugin3.png">
+    <link rel="icon" href="../../../../../balbDefaultSite/src/main/webapp/img/balbplugin3.png">
 
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
 
@@ -67,21 +69,6 @@
         <ul class="menu">
             <li><a class="nav-item" href="#plugins">Plugins</a></li>
             <li><a class="nav-item" href="../docs">Documentação</a></li>
-            <%
-                DatabaseClient.createIfNotExists();
-                Plugin.reload();
-                License.reload();
-                if(!CookieManager.isAdmin(request.getCookies())) {
-                    if (!request.getParameterMap().containsKey("senha") || !request.getParameter("senha").equalsIgnoreCase("oBomEVelhoSexo1902932438949243"))
-                    {
-                        response.sendRedirect("https://plugins.balbucio.xyz");
-                        return;
-                    }
-                }
-                if(!CookieManager.isAdmin(request.getCookies())){
-                    response.addCookie(CookieManager.createAdminCookie());
-                }
-            %>
         </ul>
     </nav>
 </header>

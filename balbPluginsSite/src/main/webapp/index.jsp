@@ -3,8 +3,16 @@
 <%@ page import="balbucio.plugins.site.License" %>
 <%@ page import="balbucio.utils.cookies.AccountCookieManager" %>
 <%@ page import="balbucio.utils.Account" %>
+<%@ page import="balbucio.utils.Start" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<%
+        Start.i();
+    Plugin.reload();
+    License.reload();
+    boolean isLogged = AccountCookieManager.checkTempID(request.getCookies());
+    Account acc = isLogged ? AccountCookieManager.getAccount(request.getCookies()) : new Account();
+%>
 <html lang="pt">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,7 +20,7 @@
     <meta property="og:site" content="https://plugins.balbucio.xyz" /> <!-- website link -->
     <meta property="og:title" content="balbPlugins - Loja de Plugins"/> <!-- title shown in the actual shared post -->
     <meta property="og:description" content="Os Melhores Plugins para o seu Servidor!" /> <!-- description shown in the actual shared post -->
-    <meta property="og:image" content="images/balbplugin3.png" /> <!-- image link, make sure it's jpg -->
+    <meta property="og:image" content="https://plugins.balbucio.xyz/images/balbplugin3.png" /> <!-- image link, make sure it's jpg -->
     <meta property="og:url" content="https://plugins.balbucio.xyz" /> <!-- where do you want your post to link to -->
     <meta property="og:type" content="store" />
 
@@ -35,6 +43,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="animate.css">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/36e5a32442.js" crossorigin="anonymous"></script>
     <style></style>
 </head>
 
@@ -55,14 +64,9 @@
             <li><a class="nav-item" href="#plugins">Plugins</a></li>
             <li><a class="nav-item" href="../docs">Documentação</a></li>
             <%
-        DatabaseClient.createIfNotExists();
-        Plugin.reload();
-        License.reload();
-        boolean isLogged = AccountCookieManager.checkTempID(request.getCookies());
-                Account acc = isLogged ? AccountCookieManager.getAccount(request.getCookies()) : null;
                 if(isLogged){
                     out.println("<li><a class=btn grow href=oauth>Painel</a></li>");
-                    out.println("<img class=avatar src=https://cdn.discordapp.com/avatars/"+acc.getDiscordID()+"/"+acc.getAvatar()+".png alt=\"Ir para o Painel\" href=panel>");
+                    out.println("<img class=avatar src="+acc.getAvatar()+" alt=\"Ir para Área de Usuários\" onclick=openURL('https://user.balbucio.xyz') >");
                 } else{
                     out.println("<li><a class=btn grow href=oauth>Logar</a></li>");
                 }
@@ -116,78 +120,56 @@
             <div class="card">
                 <img src="images/security.png" alt="Segurança">
                 <h3 class="card-title">Segurança</h3>
-                <p class="card-subtitle">A segurança é o nosso lema. Usamos padrões de segurança a nível mundial.</p>
+                <p class="card-subtitle">Todos os plugins seguem normas rigorosas de seguraça, para garantir que seu servidor e seus jogadores estão protegidos!</p>
             </div>
             <div class="card">
                 <img src="images/updates.png" alt="Atualizações">
                 <h3 class="card-title">Atualizações</h3>
-                <p class="card-subtitle">Todos os nossos plugins recebem atualizações periodicamente.</p>
+                <p class="card-subtitle">Nossos plugins recebem atualizações periodicamente com melhorias, correções e novidades.</p>
             </div>
             <div class="card">
                 <img src="images/control.png" alt="Control">
                 <h3 class="card-title">Praticidade</h3>
-                <p class="card-subtitle">Nossos plugins são planejados para terem uma instalação fácil e rápida.</p>
+                <p class="card-subtitle">Nossos plugins são planejados para terem uma instalação fácil e rápida, sempre pensam em usuários novatos.</p>
             </div>
             <div class="card">
                 <img src="images/support.png" alt="Suporte">
                 <h3 class="card-title">Suporte</h3>
-                <p class="card-subtitle">Possuimos um suporte por tickets através de nosso <a href="../discord">grupo do Discord</a>.</p>
+                <p class="card-subtitle">Temos dois meios de suporte que são ativos praticamente 24 horas por dia, nosso <a href="https://balbucio.xyz/discord">discord</a> e nosso <a>email.</a></p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-code fa-2xl" style="color: #fff; margin-bottom: 10px"></i>
+                <h3 class="card-title">Otimização</h3>
+                <p class="card-subtitle">Nossos plugins são feitos pensando na otimização do seu servidor e testados ao limite para garantir o melhor desempenho em todos cenários.</p>
             </div>
         </div>
     </div>
-    <div class="w-full features">
+    <div class="w-full features" >
         <h3 class="header">Perguntas Frequentes</h3>
         <div class="questions">
-        <details>
-            <summary>Summary</summary>
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-            </ul>
+        <details style="list-style: none">
+            <summary>Quanto tempo demora para ativar as licenças?</summary>
+            <div class="summarycontent">
+            <p>Temos até 72 Horas para ativar a sua licença, dependendo do método de pagamento esse tempo diminui, procure sempre por opções mais rápidas como PIX e cartão de crédito.</p>
+            </div>
         </details>
-        <details>
-            <summary>Summary</summary>
-            <h1>Test headline</h1>
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-            </ul>
+        <details style="list-style: none">
+            <summary>Se eu tiver algum problema o que devo fazer?</summary>
+            <div class="summarycontent">
+            <p>Basta abrir um ticket e sua dúvida será sanada rapidamente por nossa equipe.</p>
+            </div>
         </details>
-        <details>
-            <summary>Summary</summary>
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-            </ul>
+        <details style="list-style: none">
+            <summary>Como ativar uma licença?</summary>
+            <div class="summarycontent">
+            <p>Na pasta de configuração do plugin, procure por premium.yml, lá dentro irá listar todos os benéficios premium e também as configurações de tais. No começo do arquivo procure por key.email e key.chave e adicione o email da sua conta e a chave que se encontra no painel.</p>
+            </div>
         </details>
-        <details>
-            <summary>Summary</summary>
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-            </ul>
-        </details>
-        <details>
-            <summary>Summary</summary>
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-            </ul>
+        <details style="list-style: none">
+            <summary>E quanto ao reembolso?</summary>
+            <div class="summarycontent">
+            <p>Se você sentir que o plugin não atende as suas expectativas ou tem problemas que impedem o seu uso, você pode pedir reembolso em até 96 horas após a sua compra. Para pedir reembolso abra uma solicitação em nosso email financeiro: financeiro@balbucio.xyz</p>
+            </div>
         </details>
     </div>
     </div>
@@ -231,6 +213,7 @@
 </footer>
 <script src="jquery.js" type="text/javascript"></script>
 <script src="core.js" type="text/javascript"></script>
+<script src="geral.js" type="text/javascript"></script>
 <div style="z-index: 2147483647;"></div>
 </body>
 </html>

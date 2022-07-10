@@ -204,8 +204,12 @@ public class Account {
 
     public void setGitHub(JSONObject json){
         hasGitHub = true;
-        this.gitUsername = json.getString("login");
-        this.gitLink = json.getString("html_url");
+        if(json.has("login")) {
+            this.gitUsername = json.getString("login");
+        }
+        if(json.has("html_url")) {
+            this.gitLink = json.getString("html_url");
+        }
         save();
     }
 
@@ -269,11 +273,33 @@ public class Account {
     public void createModule(AccountModule module){
         try {
             RootDataPack pack = DatabaseClient.getInstance().getUser(email);
-            module.setDataPack(pack.createDataPack("modules").createDataPack(module.getName()));
+            DataPack modu = pack.createDataPack("modules");
+            module.setDataPack(modu.createDataPack(module.getName()));
+            modules.add(module);
         } catch (Exception e){
             e.printStackTrace();
         }
     }
+
+    public boolean hasModule(String name){
+        try{
+            for(AccountModule md : modules){
+                if(md.getName().equalsIgnoreCase(name)){
+                    return true;
+                }
+            }
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public AccountModule getModule(String name){
+        if(!hasModule(name)){ return null; }
+        return modules.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst().get();
+    }
+
     public void save(){
         try {
             RootDataPack pack = DatabaseClient.getInstance().getUser(email);

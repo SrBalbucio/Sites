@@ -7,8 +7,16 @@
 <%@ page import="balbucio.utils.database.DatabaseClient" %>
 <%@ page import="balbucio.utils.cookies.AccountCookieManager" %>
 <%@ page import="balbucio.utils.Account" %>
+<%@ page import="balbucio.utils.Start" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<%
+    Start.i();
+    Plugin.reload();
+    License.reload();
+    boolean isLogged = AccountCookieManager.checkTempID(request.getCookies());
+    Account acc = isLogged ? AccountCookieManager.getAccount(request.getCookies()) : new Account();
+%>
 <html lang="pt">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,6 +48,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="animate.css">
+    <script src="https://kit.fontawesome.com/36e5a32442.js" crossorigin="anonymous"></script>
     <style></style>
 </head>
 
@@ -60,17 +69,11 @@
             <li><a class="nav-item" href="#plugins">Plugins</a></li>
             <li><a class="nav-item" href="../docs">Documentação</a></li>
             <%
-                DatabaseClient.createIfNotExists();
-                Plugin.reload();
-                License.reload();
-                boolean isLogged = AccountCookieManager.checkTempID(request.getCookies());
-                Cookie cok = isLogged ? CookieManager.getCookie(request.getCookies()) : null;
-                Account acc = isLogged ? AccountCookieManager.getAccount(request.getCookies()) : null;
-                if (isLogged) {
-                    out.println("<li><a class=btn grow href=../oauth>Painel</a></li>");
-                    out.println("<img class=avatar src=https://cdn.discordapp.com/avatars/" + acc.getDiscordID() + "/" + acc.getAvatar() + ".png alt=\"Ir para o Painel\" href=../panel>");
-                } else {
-                    out.println("<li><a class=btn grow href=../oauth>Logar</a></li>");
+                if(isLogged){
+                    out.println("<li><a class=btn grow href=oauth>Painel</a></li>");
+                    out.println("<img class=avatar src="+acc.getAvatar()+" alt=\"Ir para Área de Usuários\" onclick=openURL('https://user.balbucio.xyz') >");
+                } else{
+                    out.println("<li><a class=btn grow href=oauth>Logar</a></li>");
                 }
 
                 if(!request.getParameterMap().containsKey("plugin") || !Plugin.has(request.getParameter("plugin"))){
@@ -93,12 +96,12 @@
         </div>
         <div class="options">
             <%
-                if(!isLogged || !acc.containsLicense(plugin)){
+                if(!isLogged || !License.hasLicense(acc.getEmail(), plugin)){
                     String v = plugin.isFree() ? "plugins/download?plugin="+plugin.getName() : "buy.jsp?plugin="+plugin.getName();
                     String t = plugin.isFree() ? "BAIXAR" : "COMPRAR";
                     out.println("<a href="+v+" target=\"_blank\">"+t+"</a>");
                 }
-                if(isLogged && acc.containsLicense(plugin)){
+                if(isLogged && License.hasLicense(acc.getEmail(), plugin)){
                     out.println("<a href=plugins/download?plugin="+plugin.getName()+" target=\"_blank\">BAIXAR</a>");
                 }
                 if(plugin.isInspigot()) {
@@ -106,6 +109,7 @@
                 }
             %>
             <h4>Versão Atual: v<%=plugin.getVersion()%></h4>
+            <h4 class="semmargin">Valor: R$<%=plugin.getPrice()%></h4>
         </div>
     </div>
     <div class="wrapper">
@@ -209,6 +213,8 @@
 </footer>
 <script src="jquery.js" type="text/javascript"></script>
 <script src="core.js" type="text/javascript"></script>
+<script src="geral.js" type="text/javascript"></script>
+<script src="error.js" type="text/javascript"></script>
 <div style="z-index: 2147483647;"></div>
 </body>
 </html>
