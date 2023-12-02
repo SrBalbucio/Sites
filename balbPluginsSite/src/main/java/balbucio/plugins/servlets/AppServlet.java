@@ -27,7 +27,7 @@ public class AppServlet extends HttpServlet {
         if(action.equalsIgnoreCase("/app/plugin/create")){
             try{
                 String password = request.getHeader("password");
-                if(!password.equals("3489234594359043959369sexo&Gostoso@Sem@Igual@Voce@No@Meu@Pau$128294832948935934757834573!")){
+                if(!password.equals("*")){
 
                     response.getWriter().println(new JSONObject().put("error", true).put("message", "Ops... Senha incorreta! Você foi bloqueado <3"));
                     return;
@@ -45,7 +45,7 @@ public class AppServlet extends HttpServlet {
         } else if(action.equalsIgnoreCase("/app/plugin/delete")){
             try{
                 String password = request.getHeader("password");
-                if(!password.equals("3489234594359043959369sexo&Gostoso@Sem@Igual@Voce@No@Meu@Pau$128294832948935934757834573!")){
+                if(!password.equals("*")){
 
                     response.getWriter().println(new JSONObject().put("error", true).put("message", "Ops... Senha incorreta! Você foi bloqueado <3"));
                     return;
@@ -69,7 +69,7 @@ public class AppServlet extends HttpServlet {
         if(action.equalsIgnoreCase("/app/plugin/create")){
             try{
                 String password = request.getHeader("password");
-                if(!password.equals("3489234594359043959369sexo&Gostoso@Sem@Igual@Voce@No@Meu@Pau$128294832948935934757834573!")){
+                if(!password.equals("*!")){
 
                     response.getWriter().println(new JSONObject().put("error", true).put("message", "Ops... Senha incorreta! Você foi bloqueado <3"));
                     return;
@@ -87,7 +87,7 @@ public class AppServlet extends HttpServlet {
         } else if(action.equalsIgnoreCase("/app/plugin/delete")){
             try{
                 String password = request.getHeader("password");
-                if(!password.equals("3489234594359043959369sexo&Gostoso@Sem@Igual@Voce@No@Meu@Pau$128294832948935934757834573!")){
+                if(!password.equals("*")){
 
                     response.getWriter().println(new JSONObject().put("error", true).put("message", "Ops... Senha incorreta! Você foi bloqueado <3"));
                     return;

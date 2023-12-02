@@ -19,8 +19,8 @@ public class GitAuth {
     private static final String NETWORK_NAME = "GitHub";
     private static final String PROTECTED_RESOURCE_URL = "https://api.github.com/user";
 
-    static OAuth20Service service = new ServiceBuilder("66d5527ac086e97e7484")
-            .apiSecret("b5c0e144697c1cb24445099c219c5af779f8279e")
+    static OAuth20Service service = new ServiceBuilder("*")
+            .apiSecret("*")
             .callback("https://user.balbucio.xyz/oauth/git")
             .defaultScope("user")
             .httpClientConfig(OkHttpHttpClientConfig.defaultConfig())

@@ -30,8 +30,8 @@ public class GoogleAuth {
             .setReadTimeout(1_000)
             .build());
 
-    static OAuth20Service service = new ServiceBuilder("270965088150-d3itlqmn57lenvm8r41sk55m4drmogsd.apps.googleusercontent.com")
-            .apiSecret("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")
+    static OAuth20Service service = new ServiceBuilder("*")
+            .apiSecret("*")
             .callback("https://user.balbucio.xyz/oauth/google")
             .defaultScope("profile")
             .httpClientConfig(clientConfig)

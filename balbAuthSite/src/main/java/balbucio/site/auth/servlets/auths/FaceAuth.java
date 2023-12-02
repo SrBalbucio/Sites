@@ -19,8 +19,8 @@ public class FaceAuth {
     private static final String NETWORK_NAME = "Facebook";
     private static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/v3.2/me";
 
-    static OAuth20Service service = new ServiceBuilder("420617756635465")
-            .apiSecret("ebc0e1278a59d390c4b36621694087b3")
+    static OAuth20Service service = new ServiceBuilder("*")
+            .apiSecret("*")
             .callback("https://user.balbucio.xyz/oauth/face")
             .httpClientConfig(OkHttpHttpClientConfig.defaultConfig())
             .build(FacebookApi.instance());

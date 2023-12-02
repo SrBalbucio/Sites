@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class DiscordAuth {
 
-    static DiscordOAuth oauthHandler = new DiscordOAuth("990678140995112970", "-645B358G8kPG9M47Bhg-Wa4bxG1po7L", "https://user.balbucio.xyz/oauth/dc", "email//identify".split("//"));
+    static DiscordOAuth oauthHandler = new DiscordOAuth("*", "*", "https://user.balbucio.xyz/oauth/dc", "email//identify".split("//"));
 
     public static String getURL(){
         return oauthHandler.getAuthorizationURL(null);
